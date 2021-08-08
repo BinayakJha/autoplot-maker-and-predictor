@@ -46,6 +46,16 @@ except ImportError:
 ''')
         os.system('pip install pyautogui')
         print("pyautogui installed")
+        print('''
+         ____  _  ___     _____    _    ____  _   _ 
+/ ___|| |/ / |   | ____|  / \  |  _ \| \ | |
+\___ \| ' /| |   |  _|   / _ \ | |_) |  \| |
+ ___) | . \| |___| |___ / ___ \|  _ <| |\  |
+|____/|_|\_\_____|_____/_/   \_\_| \_\_| \_|
+                                            
+        ''')
+        os.system('pip install sklearn')
+        print("sklearn installed")
         print("Packages installed :)")
         # PACKAGES INSTALLAYTION PROCESS END
         # RE-CHECKING IF PACKAGES ARE INSTALLED OR NOT
