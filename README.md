@@ -13,7 +13,7 @@ After you give the <b>csv / xlsx file name</b> it will search the file in you co
 
 ![img](https://lh3.googleusercontent.com/--Fu8obuSNE4/YQ_707OCF6I/AAAAAAAAB34/Xt9U3QPrrnwf8j70TnnotI040WCC6r0LACLcBGAsYHQ/Screen%2BShot%2B2021-08-08%2Bat%2B9.27.39%2BPM.png)
 
-After the file is found it sends the data to for further process.
+After the file is found it sends the data for further process.
 
 ![img](https://lh3.googleusercontent.com/-QrPcVOCDsI8/YQ_8cSA-JiI/AAAAAAAAB4A/c-zLjhulxAcxmbRQGyp6EymF9Py6xiB2QCLcBGAsYHQ/image.png)
 
