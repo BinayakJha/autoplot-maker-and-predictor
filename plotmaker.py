@@ -4,13 +4,18 @@ print("Checking If packages are installed or not")
 try:
     import matplotlib.pyplot as plt
     import pandas as pd
-    from pyautogui import prompt,confirm
+    from pyautogui import prompt,confirm,alert
 except ImportError:
+
     packages_ask = input('''Packages Not Found.
     Would you like to install them? (y/n)''')
 
     if packages_ask == 'y':
         # PACKAGES INSTALLATION PROCESS BEGIN
+        # installing pip
+        print('\n')
+        print('Checking if pip is installed or not')
+        os.system('python -m pip install --upgrade pip')
         print("Installing packages .......")
         print(''' __  __    _  _____ ____  _     ___ _____ _     ___ ____  
 |  \/  |  / \|_   _|  _ \| |   / _ \_   _| |   |_ _| __ ) 
@@ -48,7 +53,7 @@ except ImportError:
         try:
             import matplotlib.pyplot as plt
             import pandas as pd
-            from pyautogui import prompt,confirm
+            from pyautogui import prompt,confirm,alert
         # IF ERROR IS RAISED, THEN RE-CHECK PACKAGES
         except ImportError:
             print("Sorry some error  occured while installing Packages \n Try installing manually")
@@ -78,15 +83,30 @@ print('''     _         _          ____  _       _     __  __       _
   / _ \ | '_ \ / _` | | |_) | '__/ _ \/ _` | |/ __| __/ _ \| '__|
  / ___ \| | | | (_| | |  __/| | |  __/ (_| | | (__| || (_) | |   
 /_/   \_\_| |_|\__,_| |_|   |_|  \___|\__,_|_|\___|\__\___/|_|   
+
                  Developed By: Binayak Jha 
+
 (note: still in development you can also contribute in this project by adding new features and giving your feedback)
 ''')
 
-print('starting .....')
+print('Starting .....')
 print('\n')
 
-data_input = prompt(text = 'Please keep your csv file path here (note: give full path or ' , title = 'File path')
-df = pd.read_csv(data_input)
+data_input = input('Please keep your csv file name (include .csv) here (note: do not give a path or anything else we will find the file itself :) = ')
+print('Searching File Please wait.......')
+def find_files(filename, search_path):
+   result = []
+
+# Wlaking top-down from the root
+   for root, dir, files in os.walk(search_path):
+      if filename in files:
+         result.append(os.path.join(root, filename))
+   return result
+
+# print(find_files("canada_predicted_csv.csv","/")[0])
+a = find_files(data_input,"/")[0]
+print(a)
+df = pd.read_csv(a)
 X = prompt(text = 'please enter the data table heading which you want to show in x axis ', title= 'X axis')
 y = prompt(text = 'please enter the data table heading which you want to show in y axis ' ,title = 'Y axis')
 x_label = prompt(text = 'please enter the data table heading which you want to show in x axis ', title = 'X axis heading')
