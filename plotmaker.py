@@ -12,13 +12,32 @@ except ImportError:
     if packages_ask == 'y':
         # PACKAGES INSTALLATION PROCESS BEGIN
         print("Installing packages .......")
-        os.system('figlet "MATPLOTLIB" ')
+        print(''' __  __    _  _____ ____  _     ___ _____ _     ___ ____  
+|  \/  |  / \|_   _|  _ \| |   / _ \_   _| |   |_ _| __ ) 
+| |\/| | / _ \ | | | |_) | |  | | | || | | |    | ||  _ \ 
+| |  | |/ ___ \| | |  __/| |__| |_| || | | |___ | || |_) |
+|_|  |_/_/   \_\_| |_|   |_____\___/ |_| |_____|___|____/ 
+                                                          
+''')
         os.system('pip install  matplotlib')
         print("matplotlib installed")
-        os.system('figlet "PANDAS" ')
+        print('''
+         ____   _    _   _ ____    _    ____  
+|  _ \ / \  | \ | |  _ \  / \  / ___| 
+| |_) / _ \ |  \| | | | |/ _ \ \___ \ 
+|  __/ ___ \| |\  | |_| / ___ \ ___) |
+|_| /_/   \_\_| \_|____/_/   \_\____/ 
+
+        ''')
         os.system('pip install pandas')
         print("pandas installed")
-        os.system('figlet "PYAUTOGUI" ')
+        print(''' ______   __ _   _   _ _____ ___   ____ _   _ ___ 
+|  _ \ \ / // \ | | | |_   _/ _ \ / ___| | | |_ _|
+| |_) \ V // _ \| | | | | || | | | |  _| | | || | 
+|  __/ | |/ ___ \ |_| | | || |_| | |_| | |_| || | 
+|_|    |_/_/   \_\___/  |_| \___/ \____|\___/|___|
+                                                  
+''')
         os.system('pip install pyautogui')
         print("pyautogui installed")
         print("Packages installed :)")
