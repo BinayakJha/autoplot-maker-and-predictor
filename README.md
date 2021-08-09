@@ -5,7 +5,7 @@ This project is made from,
 1) Matplotlib
 2) Pandas
 3) Scikit Learn
-4) Pyautogui
+4) Pyautogui 
 5) More to be added.
 
 This project makes easier to make plots, You just have to give your csv/ xlsx file name.
