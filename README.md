@@ -83,7 +83,7 @@ Now, You will be asked if you want to predict some thing or not ?
 
 If 'Yes', Then you will be prompted like this (will be different i yours)
 
-![image-20210808103018945 PM](/Users/binayakjha/Library/Application Support/typora-user-images/image-20210808103018945 PM.png)
+![image-20210808103018945 PM](https://lh3.googleusercontent.com/-H4kuXzwzjIE/YRAJ9GpVlII/AAAAAAAAB5c/6GlMck6mbfkrvSI4JrSuQ4AFpRDPrluJwCLcBGAsYHQ/image.png)
 
 Now you can write a value and you will get the predicted value.
 
