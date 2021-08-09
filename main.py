@@ -1,4 +1,6 @@
 import os
+import time
+import sys
 import plot
 import statistics
 import prediction
@@ -6,6 +8,8 @@ import find_file
 print('\n')
 print("Checking If packages are installed or not")
 try:
+    import matplotlib
+    matplotlib.use("TKAgg")
     import matplotlib.pyplot as plt
     import pandas as pd
     from pyautogui import prompt,confirm,alert
@@ -65,6 +69,8 @@ except ImportError:
         # RE-CHECKING IF PACKAGES ARE INSTALLED OR NOT
         print("Checking If packages are installed or not")
         try:
+            import matplotlib
+            matplotlib.use("TKAgg")
             import matplotlib.pyplot as plt
             import pandas as pd
             from pyautogui import prompt,confirm,alert
@@ -107,22 +113,32 @@ print('Starting .....')
 print('\n')
 
 data_input = input('Please keep your csv file name (include .csv) here (note: do not give a path or anything else we will find the file itself :) = ')
-print('Searching File Please wait.......')
+print('Searching Please wait ....')
+
 # print(find_files("canada_predicted_csv.csv","/")[0])
 a = find_file.find_files(data_input,"/")[0]
+print("\n")
 print('FILE FOUND !!')
+print("\n")
+
 print(a)
+print("\n")
 # asking values start
-X = prompt(text = 'please enter the data table heading which you want to show in x axis ', title= 'X axis')
+X = input('[?] please enter the data table heading which you want to show in x axis = ')
 print('X = '+ str(X))
-y = prompt(text = 'please enter the data table heading which you want to show in y axis ' ,title = 'Y axis')
+print("\n")
+y = input('[?] please enter the data table heading which you want to show in y axis = ' )
 print('Y = '+ str(y))
-x_label = prompt(text = 'please enter the data table heading which you want to show in x axis ', title = 'X axis heading')
+print("\n")
+x_label = str(input('[?] please enter the data table heading which you want to show in x axis = '))
 print('X label = '+ str(x_label))
-y_label = prompt(text = 'please enter the data table heading which you want to show in y axis ', title = 'Y axis heading')
+print("\n")
+y_label = str(input('[?] please enter the data table heading which you want to show in y axis  = '))
 print('Y label = '+ str(y_label))
-heading = prompt(text = 'please enter the data table heading which you want to show in graph ' ,title = 'Heading')
+print("\n")
+heading = str(input('[?] please enter the data table heading which you want to show in graph = '))
 print('Heading = '+ str(heading))
+print("\n")
 # asking values end
 plt.title(heading)
 df = pd.read_csv(a)
@@ -142,7 +158,7 @@ print('''
 ''')
 print("\n")
 
-ask = prompt(text = 'Do you want to see mean and other things? (y/n) ' , title = 'Continue')
+ask = str(input( ' Do you want to see mean and other things? (y/n) '))
 if ask == 'y' or ask == 'Y' or ask == 'yes' or ask == 'Yes':
     statistics.math(df,y)
     print
@@ -161,11 +177,11 @@ print('''
 
 ''')
 print("\n")
-predict_ask = prompt(text = 'Do you want to predict? (y/n) ' , title = 'Continue')
+predict_ask = input('Do you want to predict? (y/n) ')
 if predict_ask == 'y' or predict_ask == 'Y' or predict_ask == 'yes' or predict_ask == 'Yes':
     prediction.predicts(df,X,y,x_label,y_label)
 elif predict_ask == 'n' or predict_ask == 'N' or predict_ask == 'no' or predict_ask == 'No':
-    prompt(text = 'Thank you for using this program')
+    print('Thank you for using this program')
     print("\n")
 
 print('Graph ....')
