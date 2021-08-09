@@ -1,4 +1,8 @@
 import os
+import plot
+import statistics
+import prediction
+import find_file
 print('\n')
 print("Checking If packages are installed or not")
 try:
@@ -104,185 +108,74 @@ print('\n')
 
 data_input = input('Please keep your csv file name (include .csv) here (note: do not give a path or anything else we will find the file itself :) = ')
 print('Searching File Please wait.......')
-def find_files(filename, search_path):
-   result = []
-
-# Wlaking top-down from the root
-   for root, dir, files in os.walk(search_path):
-      if filename in files:
-         result.append(os.path.join(root, filename))
-   return result
-
 # print(find_files("canada_predicted_csv.csv","/")[0])
-a = find_files(data_input,"/")[0]
+a = find_file.find_files(data_input,"/")[0]
+print('FILE FOUND !!')
 print(a)
-df = pd.read_csv(a)
+# asking values start
 X = prompt(text = 'please enter the data table heading which you want to show in x axis ', title= 'X axis')
+print('X = '+ str(X))
 y = prompt(text = 'please enter the data table heading which you want to show in y axis ' ,title = 'Y axis')
+print('Y = '+ str(y))
 x_label = prompt(text = 'please enter the data table heading which you want to show in x axis ', title = 'X axis heading')
+print('X label = '+ str(x_label))
 y_label = prompt(text = 'please enter the data table heading which you want to show in y axis ', title = 'Y axis heading')
+print('Y label = '+ str(y_label))
 heading = prompt(text = 'please enter the data table heading which you want to show in graph ' ,title = 'Heading')
+print('Heading = '+ str(heading))
+# asking values end
 plt.title(heading)
-type_graph = prompt(text = '''Please enter the type of graph you want to show:
-1) Plot     
-2) Scatter plot
-3) Histogram
-4) Box plot
-5) Pie chart
-6) Bar chart
-7) Area plot
-(enter a number)   ''',title = 'Graph type')
-if type_graph == '1':
-    # want to add a marker in your plot?
-    marker = prompt(text = '''Do you want to add a marker in your plot? (y/n)''', title = 'Marker')
-    if marker == 'y' or marker == 'Y' or marker == 'yes' or marker == 'Yes':
-        marker_input = prompt(text = 'Please enter the marker you want to add ' , title = 'Marker')
-        plt.plot(df[X],df[y],marker = marker_input)
-    else:
-        plt.plot(df[X],df[y])
-    plt.xlabel(x_label)
-    plt.ylabel(y_label)
-
-elif type_graph == '2':
-    plt.scatter(df[X], df[y])
-    plt.xlabel(x_label)
-    plt.ylabel(y_label)
-
-elif type_graph == '3':
-    plt.hist(df[y])
-    plt.xlabel(x_label)
-    plt.ylabel(y_label)
-
-elif type_graph == '4':
-    plt.boxplot(df[y])
-    plt.xlabel(x_label)
-    plt.ylabel(y_label)
-
-elif type_graph == '5':
-    plt.pie(df[y], labels = df[X])
-
-elif type_graph == '6':
-    # fwhat bar graph horizontally or vertically    
-    ask2 = prompt(text = '''Do you want to show bar graph horizontally or vertically?
-1) Horizontal
-2) Vertical
-(enter a number)   ''',title = 'Horizontal or vertical')
-    if ask2 == '1':
-        plt.barh(df[X], df[y])
-        plt.xlabel(x_label)
-        plt.ylabel(y_label)
-    elif ask2 == '2':
-        plt.bar(df[X], df[y])
-        plt.xlabel(x_label)
-        plt.ylabel(y_label)
-
-elif type_graph == '7':
-    plt.plot(df[X], df[y])
-    plt.xlabel(x_label)
-    plt.ylabel(y_label)
-
-
-save_fig = prompt(text = '''Do you want to save the graph? (y/n)''')
-if save_fig == 'y' or save_fig == 'Y' or save_fig == 'yes' or save_fig == 'Yes':
-    plt.savefig(prompt(text = 'Please enter the file name  eg (abc.png or abc.jpg)' , title = 'File name'))
-    confirm(text = 'Picture saved  in the same folder where I am !! ' , title = 'Show graph')
-# after seeing the graph close it to continue
-confirm(text = 'Close the graph to continue (You will get to see it at last also)' , title = 'Close graph')
-print('Here is the graph  .....')
-plt.show() 
+df = pd.read_csv(a)
+# Plot Module
+plot.plot(df,X,y,x_label,y_label,heading)
+# Plot Module END
 print("\n")
 print("\n")
 print("\n")
-os.system('figlet "MATHS"')
+print('''
+ __  __    _  _____ _   _ ____  
+|  \/  |  / \|_   _| | | / ___| 
+| |\/| | / _ \ | | | |_| \___ \ 
+| |  | |/ ___ \| | |  _  |___) |
+|_|  |_/_/   \_\_| |_| |_|____/ 
+
+''')
 print("\n")
-print("\n")
-def maths():
-    print(''' Please select a number from list:
-    1) Standard Deviation \t 2) Mean
-    3) Variance \t 4) Median
-    5) Mode \t 6) Range
-    7) Quartile1 \t 8) Quartile3
-    \t 9) all  
-    
-    SELECTING A NUMBER .....
-    ''')
-    me = prompt(text = ''' Please select a number from list:
-    1) Standard Deviation     2) Mean
-    3) Variance    4) Median
-    5) Mode       6) Range
-    7) Quartile1    8) Quartile3
-    9) all
-    ''', title = 'Select a number from list')
-    if me == '1':
-        # standard deviation
-        std = df[y].std()
-        confirm(text = 'Standard deviation of the data is ' + str(std) , title = ' Standard Deviation')
-    if me == '2':
-        # mean
-        mean = df[y].mean()
-        confirm(text = 'Mean of the data is ' + str(mean) , title = ' Mean')
-    if me == '3':
-        # variance
-        var = df[y].var()
-        confirm(text = 'Variance of the data is ' + str(var) , title = ' Variance')
-    if me == '4':
-        # median
-        median = df[y].median()
-        confirm(text = 'Median of the data is ' + str(median) , title = ' Median ')
-    if me == '5':
-        # mode
-        mode = df[y].mode()
-        confirm(text = 'Mode of the data is ' + str(mode) , title = ' Mode ')
-    if me == '6':
-        # range
-        range = df[y].max() - df[y].min()
-        confirm(text = 'Range of the data is ' + str(range) , title = ' Range ')
-    if me == '7':
-        # quartile1
-        q1 = df[y].quantile(0.25)
-        confirm(text = 'Quartile1 of the data is ' + str(q1) , title = ' Quartile 1 ')
-    if me == '8':
-        # quartile3
-        q3 = df[y].quantile(0.75)
-        confirm(text = 'Quartile3 of the data is ' + str(q3) , title = ' Quartile 2 ')
-    if me == '9':
-        # all
-        std = df[y].std()
-        mean = df[y].mean()
-        var = df[y].var()
-        median = df[y].median()
-        mode = df[y].mode()
-        range = df[y].max() - df[y].min()
-        q1 = df[y].quantile(0.25)
-        q3 = df[y].quantile(0.75)
-        confirm(text = 'Standard deviation of the data is ' + str(std) + '\n' + 'Mean of the data is ' + str(mean) + '\n' + 'Variance of the data is ' + str(var) + '\n' + 'Median of the data is as follows \n ' + str(median) + '\n' + 'Mode of the data is ' + str(mode) + '\n' + 'Range of the data is ' + str(range) + '\n' + 'Quartile1 of the data is ' + str(q1) + '\n' + 'Quartile3 of the data is ' + str(q3) , title = ' All ')
 
 ask = prompt(text = 'Do you want to see mean and other things? (y/n) ' , title = 'Continue')
 if ask == 'y' or ask == 'Y' or ask == 'yes' or ask == 'Yes':
-    maths()
+    statistics.math(df,y)
+    print
 elif ask == 'n' or ask == 'N' or ask == 'no' or ask == 'No':
     pass
 
 #PREDICTION
 print("\n")
-os.system('figlet "PREDICTION"')
+print('''
+ ____  ____  _____ ____ ___ ____ _____ ___ ___  _   _ 
+|  _ \|  _ \| ____|  _ \_ _/ ___|_   _|_ _/ _ \| \ | |
+| |_) | |_) |  _| | | | | | |     | |  | | | | |  \| |
+|  __/|  _ <| |___| |_| | | |___  | |  | | |_| | |\  |
+|_|   |_| \_\_____|____/___\____| |_| |___\___/|_| \_|
+                                                      
+
+''')
 print("\n")
 predict_ask = prompt(text = 'Do you want to predict? (y/n) ' , title = 'Continue')
-def predicts():
-    from sklearn.linear_model import LinearRegression
-    model = LinearRegression()
-    model.fit(df[[X]], df[[y]])
-    # ask a value to predict
-    predict_value = prompt(text = 'Please enter a value  of '+str(x_label)+' to predict '+str(y_label) , title = 'Predict')
-    predict = model.predict([[predict_value]])
-    confirm(text = 'Predicted value of '+ str(y_label)+ ' is ' + str(int(predict)) , title = 'Predict')
 if predict_ask == 'y' or predict_ask == 'Y' or predict_ask == 'yes' or predict_ask == 'Yes':
-    predicts()
+    prediction.predicts(df,X,y,x_label,y_label)
 elif predict_ask == 'n' or predict_ask == 'N' or predict_ask == 'no' or predict_ask == 'No':
     prompt(text = 'Thank you for using this program')
     print("\n")
 
 print('Graph ....')
-plt.show() 
-os.system('figlet "END"')
+print('''
+ _____ _   _ ____  
+| ____| \ | |  _ \ 
+|  _| |  \| | | | |
+| |___| |\  | |_| |
+|_____|_| \_|____/ 
+                   
+
+''')
 print("\n")
