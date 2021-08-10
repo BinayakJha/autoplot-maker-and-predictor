@@ -1,4 +1,4 @@
-# AUTO PLOT MAKER , PREDICTOR AND CLASSIFIER - Binayak jha
+# AUTO PLOT MAKER , PREDICTOR AND CLASSIFIER - Binayak jha (IN PROGRESS)
 
 This project is made from,
 
